@@ -9,6 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "highlight.js": "^11.9.0",
+    "marked": "^11.1.0",
+    "marked-highlight": "^2.1.0",
+    "tailwind-highlightjs": "^2.0.1",
     "vue": "^3.3.11"
   },
   "devDependencies": {
