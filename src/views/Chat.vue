@@ -11,10 +11,14 @@ const BASE_URL =
 
 const history: Ref<message[]> = ref([]);
 const input = ref();
-const fetchState = ref();
+const fetchState = ref("done");
 
 function removeKey() {
   localStorage.removeItem("API_KEY");
+  window.location.reload();
+}
+
+function refresh() {
   window.location.reload();
 }
 
@@ -67,9 +71,16 @@ async function askGemini(question: string) {
 <template>
   <img
     @click="removeKey"
-    src="../assets/exit_button.png"
+    src="../assets/exit.png"
     title="Click to exit and remove API KEY"
     class="fixed w-7 top-1 left-1"
+  />
+
+  <img
+    @click="refresh"
+    src="../assets/refresh.png"
+    title="New chat"
+    class="fixed w-7 top-10 left-1"
   />
   <div class="w-[80vw]">
     <Conversation

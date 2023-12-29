@@ -8,6 +8,7 @@ const props = defineProps({
     type: Object as PropType<message>,
     required: true,
   },
+  id: String,
 });
 
 const text = marked.parse(props.data.parts[0].text);
@@ -16,6 +17,7 @@ const text = marked.parse(props.data.parts[0].text);
 <template>
   <div
     v-html="text"
+    :id="props.id"
     class="py-2 px-4 rounded-xl drop-shadow-lg bg-emerald-200 my-2 w-fit float-right"
   ></div>
 </template>

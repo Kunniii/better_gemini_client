@@ -21,6 +21,7 @@ const props = defineProps({
     type: Object as PropType<message>,
     required: true,
   },
+  id: String,
 });
 
 const text = marked.parse(props.data.parts[0].text);
@@ -29,6 +30,7 @@ const text = marked.parse(props.data.parts[0].text);
 <template>
   <div
     v-html="text"
+    :id="props.id"
     class="p-2 rounded-xl drop-shadow-lg bg-white my-2 w-full float-left"
   ></div>
 </template>
