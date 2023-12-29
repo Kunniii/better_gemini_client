@@ -19,7 +19,7 @@ function removeKey() {
 }
 
 function refresh() {
-  window.location.reload();
+  history.value = [];
 }
 
 function sendQuestion() {
