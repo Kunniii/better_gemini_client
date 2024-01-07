@@ -10,7 +10,17 @@ export default {
     hljs: {
       theme: "atom-one-dark",
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-10deg)" },
+          "50%": { transform: "rotate(10deg)" },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 200ms ease-in-out infinite",
+      },
+    },
   },
   plugins: [require("tailwind-highlightjs")],
 };
