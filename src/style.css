@@ -6,8 +6,8 @@ body {
   @apply bg-gray-200 flex justify-center items-center scroll-smooth;
 }
 
-code {
-  @apply font-mono rounded-md text-sm text-gray-700;
+pre {
+  @apply font-mono rounded-md text-sm text-lime-500 bg-[#282c34] p-2;
 }
 
 ul {

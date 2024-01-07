@@ -31,6 +31,6 @@ const text = marked.parse(props.data.parts[0].text);
   <div
     v-html="text"
     :id="props.id"
-    class="p-2 rounded-xl drop-shadow-lg bg-white my-2 w-full float-left"
+    class="overflow-x-auto p-2 rounded-xl drop-shadow-lg bg-white my-2 w-full float-left dark:bg-slate-700 dark:text-white"
   ></div>
 </template>
