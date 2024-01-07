@@ -21,3 +21,19 @@ ol {
 li {
   @apply ml-5;
 }
+
+table {
+  @apply table-auto;
+}
+
+th {
+  @apply border border-slate-300 dark:border-slate-600 font-semibold p-4 text-left;
+}
+
+td {
+  @apply border border-slate-300 dark:border-slate-600 p-4;
+}
+
+thead {
+  @apply bg-slate-50 dark:bg-slate-800;
+}
