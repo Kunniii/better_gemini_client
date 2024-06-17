@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import type { message } from "../types";
-import GeminiMessage from "./GeminiMessage.vue";
-import MessageError from "./MessageError.vue";
-import Thinking from "./Thinking.vue";
-import UserMessage from "./UserMessage.vue";
+  import type { message } from "../types";
+  import GeminiMessage from "./GeminiMessage.vue";
+  import MessageError from "./MessageError.vue";
+  import Thinking from "./Thinking.vue";
+  import UserMessage from "./UserMessage.vue";
 
-const props = defineProps({
-  conversation: {
-    type: Array<message>,
-    required: true,
-  },
-  fetchStatus: {
-    type: String,
-    required: true,
-  },
-});
+  const props = defineProps({
+    conversation: {
+      type: Array<message>,
+      required: true,
+    },
+    fetchStatus: {
+      type: String,
+      required: true,
+    },
+  });
 
-function scrollToEnd() {
-  setTimeout(() => {
-    window.scrollTo({
-      top: document.body.scrollHeight + 9999999,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, 100);
-}
+  function scrollToEnd() {
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight + 9999999,
+        left: 0,
+        behavior: "smooth",
+      });
+    }, 100);
+  }
 </script>
 
 <template>
