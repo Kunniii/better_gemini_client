@@ -40,7 +40,7 @@
     />
     <div
       v-html="text"
-      class="overflow-x-auto p-2 rounded-xl drop-shadow-lg bg-white my-2 w-full float-left dark:bg-slate-700 dark:text-white"
+      class="overflow-x-auto p-2 rounded-xl drop-shadow-lg bg-white my-2 w-full float-left dark:bg-transparent dark:text-white"
     ></div>
   </div>
 </template>
