@@ -69,30 +69,34 @@
 </script>
 
 <template>
-  <div class="text-2xl w-fit p-2 fixed top-2 left-2">
-    <div
-      @click="removeKey"
-      title="Click to exit and remove API KEY"
-      class="hover:drop-shadow-md duration-200 text-rose-500"
-    >
-      <i class="fa-regular fa-circle-xmark hover:animate-wiggle bg-white rounded-full p-2 my-1"></i>
+  <span>
+    <div class="text-2xl w-fit p-2 fixed top-2 left-2">
+      <div
+        @click="removeKey"
+        title="Click to exit and remove API KEY"
+        class="hover:drop-shadow-md duration-200 text-rose-500"
+      >
+        <i
+          class="fa-regular fa-circle-xmark hover:animate-wiggle bg-white rounded-full p-2 my-1"
+        ></i>
+      </div>
+      <div
+        @click="refresh"
+        title="New chat"
+        class="hover:drop-shadow-md duration-200 text-blue-600"
+      >
+        <i class="fa-solid fa-rotate hover:animate-spin bg-white rounded-full p-2 my-1"></i>
+      </div>
+      <div
+        @click="() => console.log('View Chat')"
+        title="See/Load Conversations"
+        class="hover:drop-shadow-md duration-200 text-yellow-500"
+      >
+        <i class="fa-regular fa-circle-play bg-white rounded-full p-2 my-1"></i>
+      </div>
     </div>
-    <div
-      @click="refresh"
-      title="New chat"
-      class="hover:drop-shadow-md duration-200 text-blue-600"
-    >
-      <i class="fa-solid fa-rotate hover:animate-spin bg-white rounded-full p-2 my-1"></i>
-    </div>
-    <div
-      @click="() => console.log('View Chat')"
-      title="See/Load Conversations"
-      class="hover:drop-shadow-md duration-200 text-yellow-500"
-    >
-      <i class="fa-regular fa-circle-play bg-white rounded-full p-2 my-1"></i>
-    </div>
-  </div>
-  <div class="w-[80vw]">
+  </span>
+  <div class="w-[80vw] mx-auto">
     <Conversation
       :conversation="history"
       :fetch-status="fetchState"
