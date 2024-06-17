@@ -13,10 +13,10 @@
   const input = ref();
   const fetchState = ref("done");
 
-  function removeKey() {
-    localStorage.removeItem("API_KEY");
-    window.location.reload();
-  }
+  // function removeKey() {
+  //   localStorage.removeItem("API_KEY");
+  //   window.location.reload();
+  // }
 
   function refresh() {
     history.value = [];
