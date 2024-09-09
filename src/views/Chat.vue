@@ -25,6 +25,7 @@ function updateBaseUrl() {
 
 function refresh() {
   history.value = [];
+  conversation.value = [];
 }
 
 function sendQuestion() {
