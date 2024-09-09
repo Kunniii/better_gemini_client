@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { marked } from "marked";
-
 const props = defineProps({
   data: {
     type: String,
@@ -9,7 +7,23 @@ const props = defineProps({
   id: String,
 });
 
-const text = marked.parse(props.data);
+function escapeHTML(str: string) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function wrapInPTags(text: string) {
+  return text
+    .split("\n")
+    .map((line) => `<p>${escapeHTML(line)}</p>`)
+    .join("");
+}
+
+const text = wrapInPTags(props.data);
 </script>
 
 <template>
