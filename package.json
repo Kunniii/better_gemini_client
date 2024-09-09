@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "caniuse-lite": "^1.0.30001659",
     "highlight.js": "^11.9.0",
     "marked": "^11.1.0",
     "marked-highlight": "^2.1.0",

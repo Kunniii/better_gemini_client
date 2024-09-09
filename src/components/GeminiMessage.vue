@@ -1,37 +1,35 @@
 <script setup lang="ts">
-  import { message } from "../types";
-  import { PropType } from "vue";
+import { Marked } from "marked";
+import { markedHighlight } from "marked-highlight";
+import hljs from "highlight.js";
 
-  import { Marked } from "marked";
-  import { markedHighlight } from "marked-highlight";
-  import hljs from "highlight.js";
-
-  const marked = new Marked(
-    markedHighlight({
-      langPrefix: "hljs language-",
-      highlight(code: string, lang: string) {
-        const language = hljs.getLanguage(lang) ? lang : "plaintext";
-        return hljs.highlight(code, { language }).value;
-      },
-    })
-  );
-
-  const props = defineProps({
-    data: {
-      type: Object as PropType<message>,
-      required: true,
+const marked = new Marked(
+  markedHighlight({
+    langPrefix: "hljs language-",
+    highlight(code: string, lang: string) {
+      const language = hljs.getLanguage(lang) ? lang : "plaintext";
+      return hljs.highlight(code, { language }).value;
     },
-    id: String,
-  });
+  })
+);
 
-  const text = marked.parse(props.data.parts[0].text);
+const props = defineProps({
+  data: {
+    type: String,
+    required: true,
+  },
+  id: String,
+  tokenUsed: {
+    type: Number,
+    required: true,
+  },
+});
+
+const text = marked.parse(props.data);
 </script>
 
 <template>
-  <div
-    :id="props.id"
-    class=""
-  >
+  <div :id="props.id" class="" :title="String(props.tokenUsed)">
     <img
       src="../assets/gemini.png"
       alt="gemini icon"

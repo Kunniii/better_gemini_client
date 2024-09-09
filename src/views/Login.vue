@@ -1,18 +1,20 @@
 <script setup lang="ts">
-  import { ref } from "vue";
+import { ref } from "vue";
 
-  const input = ref();
+const input = ref();
 
-  function saveKey() {
-    if (!input.value) return;
-    localStorage.setItem("API_KEY", input.value);
-    window.location.reload();
-  }
+function saveKey() {
+  if (!input.value) return;
+  localStorage.setItem("API_KEY", input.value);
+  window.location.reload();
+}
 </script>
 
 <template>
   <div class="flex justify-center items-center h-svh">
-    <div class="flex flex-col px-2 w-80 h-fit bg-white rounded-xl drop-shadow-xl">
+    <div
+      class="flex flex-col px-2 w-80 h-fit bg-white rounded-xl drop-shadow-xl"
+    >
       <h1 class="text-center pt-5">Welcome to my Gemini AI Client!</h1>
       <h2 class="text-3xl text-center font-bold pb-4">Use your API key</h2>
       <input
@@ -37,8 +39,8 @@
         Start using Gemini
       </button>
       <p class="text-justify px-5 pt-2 mb-5">
-        Your API key is saved locally, your data stays private: Everything is done client-side and
-        never leaves your browser.
+        Your API key is saved locally, your data stays private: Everything is
+        done client-side and never leaves your browser.
       </p>
     </div>
   </div>

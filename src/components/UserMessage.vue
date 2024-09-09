@@ -1,17 +1,15 @@
 <script setup lang="ts">
-  import { marked } from "marked";
-  import { message } from "../types";
-  import { PropType } from "vue";
+import { marked } from "marked";
 
-  const props = defineProps({
-    data: {
-      type: Object as PropType<message>,
-      required: true,
-    },
-    id: String,
-  });
+const props = defineProps({
+  data: {
+    type: String,
+    required: true,
+  },
+  id: String,
+});
 
-  const text = marked.parse(props.data.parts[0].text);
+const text = marked.parse(props.data);
 </script>
 
 <template>
