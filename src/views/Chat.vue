@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import type { Ref } from "vue";
-import type { Message } from "../types";
+import type { Content, Message } from "../types";
 import Conversation from "../components/Conversation.vue";
 import Settings from "../components/Settings.vue";
 
@@ -13,7 +13,8 @@ let selectedModel = ref(
 
 let BASE_URL = `https://generativelanguage.googleapis.com/v1beta/models/${selectedModel.value}:generateContent?key=${API_KEY}`;
 
-const history: Ref<Message[]> = ref([]);
+const history: Ref<Content[]> = ref([]);
+const conversation: Ref<Message[]> = ref([]);
 const input = ref();
 const fetchState = ref("done");
 const showSettingsPopup = ref(false);
@@ -29,11 +30,14 @@ function refresh() {
 function sendQuestion() {
   if (fetchState.value == "pending") return;
   if (!input.value.trim() || input.value.trim() == "") return;
-  let question = input.value;
+  let question = input.value.trim();
   input.value = "";
   askGemini(question)
-    .then((response) => {
-      history.value.push(response);
+    .then((res: Message) => {
+      if (res.candidates) {
+        history.value.push(res.candidates[0].content);
+        conversation.value.push(res);
+      }
     })
     .catch((e) => {
       console.log(e);
@@ -56,13 +60,25 @@ async function askGemini(question: string) {
     ],
   };
 
-  history.value.push(userQuestion);
+  history.value.push(userQuestion.contents[0]);
+  conversation.value.push(userQuestion);
   return fetch(BASE_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(userQuestion),
+    body: JSON.stringify({
+      contents: history.value,
+      safetySettings: [
+        {
+          category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+          threshold: "BLOCK_ONLY_HIGH",
+        },
+      ],
+      generationConfig: {
+        temperature: 0.7,
+      },
+    }),
   })
     .then((response) => {
       fetchState.value = "done";
@@ -110,7 +126,7 @@ watch(selectedModel, (newModel) => {
       </div>
     </span>
     <div class="w-[80vw] mx-auto">
-      <Conversation :conversation="history" :fetch-status="fetchState" />
+      <Conversation :conversation="conversation" :fetch-status="fetchState" />
       <textarea
         placeholder="Ask Gemini (use Ctrl + Enter to send)"
         v-model="input"

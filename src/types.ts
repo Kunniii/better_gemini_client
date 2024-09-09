@@ -11,7 +11,7 @@ type Part = {
   text: string;
 };
 
-type Content = {
+export type Content = {
   role: "user" | "model";
   parts: Part[];
 };
@@ -27,7 +27,7 @@ type SafetyRating = {
 
 type Candidate = {
   content: Content;
-  finishReason: "STOP";
+  finishReason: String;
   index: number;
   safetyRatings: SafetyRating[];
 };
@@ -42,4 +42,6 @@ export type Message = {
   candidates?: Candidate[];
   contents: Content[];
   usageMetadata?: UsageMetadata;
+  generationConfig?: any;
+  safetySettings?: any;
 };
